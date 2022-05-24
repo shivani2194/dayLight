@@ -17,3 +17,5 @@ Step 3:
 
 Tests are located in the apiTest folder
 Use following command to run API tests: npm run test
+
+Please note that the node version has to be ~12.20.0
