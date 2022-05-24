@@ -1,15 +1,17 @@
+//importing base url, env variables and payload body
 const request = require('supertest')(`${process.env.BASE_URL}`)
 const {eventPayload} = require('./fixtures/createFile')
 const organtinzationId = process.env.ORGANIZATION_ID
 let payload;
 jest.setTimeout(30000)
 describe('create event', function () {
-    it('should be able to verify if the event was created', async () =>{
-        const eventName= "My second event"
+    it('should be able to verify if the event was created', async () => {
+        
+        //creating an event
+        const eventName = `Dance show- ${Math.floor(Math.random() * 1000)}`;
         payload = JSON.parse(JSON.stringify(eventPayload))
-      
         payload.event.name.html = eventName
-        //delete payload.event.name.html
+        
         const response = await request
             .post(`organizations/${organtinzationId}/events/`)
             .set({
@@ -18,10 +20,11 @@ describe('create event', function () {
                 accept : 'application/json'
             })
             .send(payload)
-        
-        eventId = response.body.id
        
+       //verifying response status code 
         expect(response.statusCode).toBe(200)
+
+        //verifying response body
         expect(response.body).toStrictEqual({
             name: { text: eventName, html: eventName },
             
@@ -82,15 +85,10 @@ describe('create event', function () {
     });
 });
 
-// name. html should not be empty
-// time should not  be in past
-// Time should not be empty
-// start and end time 
-// currency invalid 
-// no currency
+//The above it block is just one test case, further API test cases can be written around this as follows
 
+// #1 The name. html should not be empty
+// #2 Start and end date should not  be in past
+// #3 Time should not be empty
+// #4 Do not accept blank currency
 
-// git 
-// readme  ---> create .env -- paste this --->
-// eslint prettier 
-// gitignore ----< node module

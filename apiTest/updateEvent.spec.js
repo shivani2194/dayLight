@@ -7,12 +7,12 @@ jest.setTimeout(30000)
 describe('create event', function () {
     it('should be able to verify if the event was created', async () => {
         let eventId
-        const eventName = "My second event"
+
+        //creating an event
+        const eventName = `Dance show- ${Math.floor(Math.random() * 1000)}`;
         payload = JSON.parse(JSON.stringify(eventPayload))
         updateEventpayload = JSON.parse(JSON.stringify(updateEventPayload))
-        //console.log(payload)
         payload.event.name.html = eventName
-        //delete payload.event.name.html
         const response = await request
             .post(`organizations/${organtinzationId}/events/`)
             .set({
@@ -21,9 +21,9 @@ describe('create event', function () {
                 accept: 'application/json'
             })
             .send(payload)
-        console.log(response.body)
+        
+        //savig event id to pass it into request body to update event
         eventId = response.body.id
-        console.log(eventId)
         expect(response.statusCode).toBe(200)
         expect(response.body).toEqual({
             name: { text: eventName, html: eventName },
@@ -82,7 +82,7 @@ describe('create event', function () {
             logo: null
         })
         
-        console.log(organtinzationId)
+       //updating the event created above 
         const updateEventResponse = await request
             .post(`events/${eventId}/`)
             .set({
@@ -91,16 +91,10 @@ describe('create event', function () {
             })
             .query({ "event.name.html": 'Test1' })
         expect(updateEventResponse.statusCode).toBe(200)
-        console.log(updateEventResponse.body)
     });
 });
 
-// curl--location--request POST 'eventbrite.com' \
-// --header 'Authorization: Bearer 3NXP6GG3PP7JSTHJXMX4' \
-// --header 'Content-Type: text/plain' \
-// --data - raw 'curl -X POST   https://www.eventbriteapi.com/v3/organizations/977189949183/events/347651694577   -H '\''Authorization: Bearer 3NXP6GG3PP7JSTHJXMX4'\'' - H "Accept: application/json"
-//     - d '\''{
-//     "event": {
-//         "capacity": 200
-//     }
-// } '\'''
+
+//The above it block is just one test case, further API test cases can be written around this as follows
+
+// updating currency, start and end time 
