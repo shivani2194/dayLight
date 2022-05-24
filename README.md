@@ -4,7 +4,7 @@ Workspace Setup:
 
 step 1:
 
-Clone git repo to your local machine 
+Clone git repo to your local machine:  https://github.com/shivani2194/dayLight
 
 git clone 
 
