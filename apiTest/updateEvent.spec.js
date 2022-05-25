@@ -1,9 +1,7 @@
 const request = require('supertest')(`${process.env.BASE_URL}`)
 const { eventPayload } = require('./fixtures/createFile')
-const { updateEventPayload } = require('./fixtures/updateEvent')
 const organtinzationId = process.env.ORGANIZATION_ID
 let payload;
-jest.setTimeout(30000)
 describe('create event', function () {
     it('should be able to verify if the event was created', async () => {
         let eventId
@@ -11,7 +9,6 @@ describe('create event', function () {
         //creating an event
         const eventName = `Dance show- ${Math.floor(Math.random() * 1000)}`;
         payload = JSON.parse(JSON.stringify(eventPayload))
-        updateEventpayload = JSON.parse(JSON.stringify(updateEventPayload))
         payload.event.name.html = eventName
         const response = await request
             .post(`organizations/${organtinzationId}/events/`)
@@ -89,12 +86,15 @@ describe('create event', function () {
                 Authorization: `Bearer ${process.env.TOKEN}`,
                 Accept: `application/json`
             })
-            .query({ "event.name.html": 'Test1' })
+            .query({
+                "event.summary": "Dance your heart out",
+                "event.currency": "EUR"})
         expect(updateEventResponse.statusCode).toBe(200)
+        expect(updateEventResponse.body.summary).toBe("Dance your heart out")
+        expect(updateEventResponse.body.currency).toBe("EUR")
     });
 });
 
 
 //The above it block is just one test case, further API test cases can be written around this as follows
-
-// updating currency, start and end time 
+// updating capacity, start and end time 
