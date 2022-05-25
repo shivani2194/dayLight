@@ -3,7 +3,6 @@ const request = require('supertest')(`${process.env.BASE_URL}`)
 const {eventPayload} = require('./fixtures/createFile')
 const organtinzationId = process.env.ORGANIZATION_ID
 let payload;
-jest.setTimeout(30000)
 describe('create event', function () {
     it('should be able to verify if the event was created', async () => {
         
@@ -91,4 +90,3 @@ describe('create event', function () {
 // #2 Start and end date should not  be in past
 // #3 Time should not be empty
 // #4 Do not accept blank currency
-
