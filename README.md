@@ -22,19 +22,8 @@ Please note that the node version has to be ~12.20.0
 
 # Daylight SDET challenge
 
-- Type some Markdown on the left
-
-## Features
-
-
 
 > This repo verifies create event and update event API for eventbrite.com
-> 
-> 
-> 
-> 
-> 
-> 
 
 
 
@@ -44,8 +33,8 @@ This repo uses Jest testing framework and supertest http agent
 
 
 - [node.js] - evented I/O for the backend
-- [jest] - 
-- [supertest]
+- [jest] - testing framework. Currently used to test API for this repo
+- [supertest] - http agent
 
 
 ## Installation
@@ -55,20 +44,10 @@ This repo requires [Node.js](https://nodejs.org/) v12+ to run.
 Install the dependencies and devDependencies and start the server.
 
 ```sh
-git clone <repo>
+git clone https://github.com/shivani2194/daylight.git
 npm i
 npm run test
 ```
-
-
-
-## Plugins
-
-| Plugin | README |
-| ------ | ------ |
-
-| GitHub | [plugins/github/README.md][PlGh] |
-| Jest | [plugins/github/README.md][PlGh] |
 
 
 
